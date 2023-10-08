@@ -20,6 +20,10 @@ TEST_DESCRIPTIONS = {
     "Check inbox page": ["Verify that Inbox page is accessible only for logged in users.", eleventh_test]
 }
 
+@st.cache_resource
+def get_driver():
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
 st.title("DevFinder Automated Testing App")
 
 selected_test = st.sidebar.selectbox("Select a Test", list(TEST_DESCRIPTIONS.keys()))
@@ -33,7 +37,7 @@ if st.button("Run Test"):
     options = Options()
     options.add_argument('--disable-gpu')
     options.add_argument('--headless')
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    driver = get_driver()
     output = TEST_DESCRIPTIONS[selected_test][1](driver)
     if output:
         st.success("Test passed!")
@@ -46,7 +50,7 @@ if all_tests:
     options = Options()
     options.add_argument('--disable-gpu')
     options.add_argument('--headless')
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    driver = get_driver()
     outputs = []
     for test in TEST_DESCRIPTIONS:
         st.info(f"Running test: {TEST_DESCRIPTIONS[test][0]}")
