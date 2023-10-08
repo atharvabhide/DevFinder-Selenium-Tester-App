@@ -29,3 +29,8 @@ Run the tests:
 ```
 python tests.py
 ```
+
+Run the tests with the streamlit app:
+```
+streamlit run app.py
+```
