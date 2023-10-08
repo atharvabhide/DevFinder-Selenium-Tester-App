@@ -1,5 +1,8 @@
 import streamlit as st
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 from tests import *
 
@@ -27,7 +30,10 @@ st.write(f"**Test Description:** {TEST_DESCRIPTIONS[selected_test][0]}")
 
 if st.button("Run Test"):
     st.write(f"Running test: {TEST_DESCRIPTIONS[selected_test][0]}")
-    driver = webdriver.Chrome()
+    options = Options()
+    options.add_argument('--disable-gpu')
+    options.add_argument('--headless')
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     output = TEST_DESCRIPTIONS[selected_test][1](driver)
     if output:
         st.success("Test passed!")
@@ -37,9 +43,13 @@ if st.button("Run Test"):
 
 if all_tests:
     st.write("Running all tests...")
-    driver = webdriver.Chrome()
+    options = Options()
+    options.add_argument('--disable-gpu')
+    options.add_argument('--headless')
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     outputs = []
     for test in TEST_DESCRIPTIONS:
+        st.info(f"Running test: {TEST_DESCRIPTIONS[test][0]}")
         output = TEST_DESCRIPTIONS[test][1](driver)
         outputs.append(output)
     driver.quit()
