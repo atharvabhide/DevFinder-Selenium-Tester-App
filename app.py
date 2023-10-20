@@ -37,7 +37,7 @@ if st.button("Run Test"):
     options = Options()
     options.add_argument('--disable-gpu')
     options.add_argument('--headless')
-    driver = get_driver()
+    driver = webdriver.Chrome()
     output = TEST_DESCRIPTIONS[selected_test][1](driver)
     if output:
         st.success("Test passed!")
@@ -50,7 +50,7 @@ if all_tests:
     options = Options()
     options.add_argument('--disable-gpu')
     options.add_argument('--headless')
-    driver = get_driver()
+    driver = webdriver.Chrome()
     outputs = []
     for test in TEST_DESCRIPTIONS:
         st.info(f"Running test: {TEST_DESCRIPTIONS[test][0]}")
