@@ -17,7 +17,16 @@ TEST_DESCRIPTIONS = {
     "Check developers page": ["Verify that Developers page is accessible.", eighth_test],
     "Check projects page": ["Verify that Projects page is accessible.", ninth_test],
     "Check recommendations page": ["Verify that Recommendations page is accessible only for logged in users.", tenth_test],
-    "Check inbox page": ["Verify that Inbox page is accessible only for logged in users.", eleventh_test]
+    "Check inbox page": ["Verify that Inbox page is accessible only for logged in users.", eleventh_test],
+    "Check sign up page": ["Verify that Sign Up page is accessible.", twelth_test],
+    "Check sign up with empty credentials": ["Verify that Sign Up is not possible with empty credentials.", thirteenth_test],
+    "Check sign up with empty name": ["Verify that Sign Up is not possible with empty name.", fourteenth_test],
+    "Check sign up with empty username": ["Verify that Sign Up is not possible with empty username.", fifteenth_test],
+    "Check sign up with empty email": ["Verify that Sign Up is not possible with empty email.", sixteenth_test],
+    "Check sign up with empty password": ["Verify that Sign Up is not possible with empty password.", seventeenth_test],
+    "Check sign up with all credentials": ["Verify that Sign Up is possible with all credentials.", eighteenth_test],
+    "Check edit profile button": ["Verify that Edit Profile button is accessible only for logged in users.", nineteenth_test],
+    "Check editing name": ["Verify that name can be edited.", twenteeth_test],
 }
 
 @st.cache_resource
@@ -71,7 +80,16 @@ if all_tests:
     "Check developers page": "Test Passed" if outputs[7] else "Test Failed",
     "Check projects page": "Test Passed" if outputs[8] else "Test Failed",
     "Check recommendations page": "Test Passed" if outputs[9] else "Test Failed",
-    "Check inbox page": "Test Passed" if outputs[10] else "Test Failed"
+    "Check inbox page": "Test Passed" if outputs[10] else "Test Failed",
+    "Check sign up page": "Test Passed" if outputs[11] else "Test Failed",
+    "Check sign up with empty credentials": "Test Passed" if outputs[12] else "Test Failed",
+    "Check sign up with empty name": "Test Passed" if outputs[13] else "Test Failed",
+    "Check sign up with empty username": "Test Passed" if outputs[14] else "Test Failed",
+    "Check sign up with empty email": "Test Passed" if outputs[15] else "Test Failed",
+    "Check sign up with empty password": "Test Passed" if outputs[16] else "Test Failed",
+    "Check sign up with all credentials": "Test Passed" if outputs[17] else "Test Failed",
+    "Check edit profile button": "Test Passed" if outputs[18] else "Test Failed",
+    "Check editing name": "Test Passed" if outputs[19] else "Test Failed",
     }
 
     df = pd.DataFrame()

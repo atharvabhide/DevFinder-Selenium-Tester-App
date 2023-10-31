@@ -4,6 +4,7 @@ from colorama import Fore, Back, Style
 from dotenv import load_dotenv
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 import os
 load_dotenv()
 
@@ -253,6 +254,253 @@ def eleventh_test(driver):
         print(Fore.RED + f"Test failed because of wrong login credentials" + Style.RESET_ALL)
         return False
 
+def twelth_test(driver):
+    '''
+    Verify that Sign Up page is accessible.
+    '''
+    driver.get("https://dev-finder-5b30d7.netlify.app/login")
+    sign_up_toggle_div = driver.find_element(By.XPATH, "//div[contains(text(), 'Sign Up')]")
+    sign_up_toggle_div.click()
+
+    expected_url = "https://dev-finder-5b30d7.netlify.app/login"
+    try:
+        WebDriverWait(driver, 5).until(EC.url_to_be(expected_url))
+        if driver.current_url == expected_url:
+            print(Fore.GREEN + "Test passed" + Style.RESET_ALL)
+            return True
+        else:
+            print(Fore.RED + "Test failed" + Style.RESET_ALL)
+            return False
+    except Exception as e:
+        print(Fore.RED + f"Test failed because of unexpected result" + Style.RESET_ALL)
+        return False
+
+def thirteenth_test(driver):
+    '''
+    Verify that Sign Up is not possible with empty details.
+    '''
+    if twelth_test(driver):
+        name_field = driver.find_element(By.XPATH, "//input[@placeholder='Name']")
+        username_field = driver.find_element(By.XPATH, "//input[@placeholder='Enter your username']")
+        email_field = driver.find_element(By.XPATH, "//input[@placeholder='Email']")
+        password_field = driver.find_element(By.XPATH, "//input[@placeholder='Enter your password']")
+        name_field.send_keys("")
+        username_field.send_keys("")
+        email_field.send_keys("")
+        password_field.send_keys("")
+
+        sign_up_button = driver.find_element(By.XPATH, "//button[text()='Sign Up' and contains(@class, '_button_19ks3_90')]")
+        actions = ActionChains(driver)
+        actions.move_to_element(sign_up_button)
+        actions.perform()
+        sign_up_button.click()
+        expected_url = "https://dev-finder-5b30d7.netlify.app/"
+        try:
+            WebDriverWait(driver, 5).until(EC.url_to_be(expected_url))
+            if driver.current_url == expected_url:
+                print(Fore.RED + "Test failed" + Style.RESET_ALL)
+                return False
+            else:
+                print(Fore.GREEN + "Test passed" + Style.RESET_ALL)
+                return True
+        except Exception as e:
+            print(Fore.GREEN + f"Test passed" + Style.RESET_ALL)
+            return True
+
+def fourteenth_test(driver):
+    '''
+    Verify that Sign Up is not possible with empty name.
+    '''
+    if twelth_test(driver):
+        name_field = driver.find_element(By.XPATH, "//input[@placeholder='Name']")
+        username_field = driver.find_element(By.XPATH, "//input[@placeholder='Enter your username']")
+        email_field = driver.find_element(By.XPATH, "//input[@placeholder='Email']")
+        password_field = driver.find_element(By.XPATH, "//input[@placeholder='Enter your password']")
+        name_field.send_keys("")
+        username_field.send_keys("stqa_tester")
+        email_field.send_keys("atharvabhide91@gmail.com")
+        password_field.send_keys("Atharva1@@")
+
+        sign_up_button = driver.find_element(By.XPATH, "//button[text()='Sign Up' and contains(@class, '_button_19ks3_90')]")
+        actions = ActionChains(driver)
+        actions.move_to_element(sign_up_button)
+        actions.perform()
+        sign_up_button.click()
+        expected_url = "https://dev-finder-5b30d7.netlify.app/"
+        try:
+            WebDriverWait(driver, 5).until(EC.url_to_be(expected_url))
+            if driver.current_url == expected_url:
+                print(Fore.RED + "Test failed" + Style.RESET_ALL)
+                return False
+            else:
+                print(Fore.GREEN + "Test passed" + Style.RESET_ALL)
+                return True
+        except Exception as e:
+            print(Fore.GREEN + f"Test passed" + Style.RESET_ALL)
+            return True
+
+def fifteenth_test(driver):
+    '''
+    Verify that Sign Up is not possible with empty username.
+    '''
+    if twelth_test(driver):
+        name_field = driver.find_element(By.XPATH, "//input[@placeholder='Name']")
+        username_field = driver.find_element(By.XPATH, "//input[@placeholder='Enter your username']")
+        email_field = driver.find_element(By.XPATH, "//input[@placeholder='Email']")
+        password_field = driver.find_element(By.XPATH, "//input[@placeholder='Enter your password']")
+        name_field.send_keys("stqa_tester")
+        username_field.send_keys("")
+        email_field.send_keys("atharvabhide91@gmail.com")
+        password_field.send_keys("Atharva1@@")
+
+        sign_up_button = driver.find_element(By.XPATH, "//button[text()='Sign Up' and contains(@class, '_button_19ks3_90')]")
+        actions = ActionChains(driver)
+        actions.move_to_element(sign_up_button)
+        actions.perform()
+        sign_up_button.click()
+        expected_url = "https://dev-finder-5b30d7.netlify.app/"
+        try:
+            WebDriverWait(driver, 5).until(EC.url_to_be(expected_url))
+            if driver.current_url == expected_url:
+                print(Fore.RED + "Test failed" + Style.RESET_ALL)
+                return False
+            else:
+                print(Fore.GREEN + "Test passed" + Style.RESET_ALL)
+                return True
+        except Exception as e:
+            print(Fore.GREEN + f"Test passed" + Style.RESET_ALL)
+            return True
+        
+def sixteenth_test(driver):
+    '''
+    Verify that Sign Up is not possible with empty email.
+    '''
+    if twelth_test(driver):
+        name_field = driver.find_element(By.XPATH, "//input[@placeholder='Name']")
+        username_field = driver.find_element(By.XPATH, "//input[@placeholder='Enter your username']")
+        email_field = driver.find_element(By.XPATH, "//input[@placeholder='Email']")
+        password_field = driver.find_element(By.XPATH, "//input[@placeholder='Enter your password']")
+        name_field.send_keys("stqa_tester")
+        username_field.send_keys("stqa_tester")
+        email_field.send_keys("")
+        password_field.send_keys("Atharva1@@")
+
+        sign_up_button = driver.find_element(By.XPATH, "//button[text()='Sign Up' and contains(@class, '_button_19ks3_90')]")
+        actions = ActionChains(driver)
+        actions.move_to_element(sign_up_button)
+        actions.perform()
+        sign_up_button.click()
+        expected_url = "https://dev-finder-5b30d7.netlify.app/"
+        try:
+            WebDriverWait(driver, 5).until(EC.url_to_be(expected_url))
+            if driver.current_url == expected_url:
+                print(Fore.RED + "Test failed" + Style.RESET_ALL)
+                return False
+            else:
+                print(Fore.GREEN + "Test passed" + Style.RESET_ALL)
+                return True
+        except Exception as e:
+            print(Fore.GREEN + f"Test passed" + Style.RESET_ALL)
+            return True
+        
+def seventeenth_test(driver):
+    '''
+    Verify that Sign Up is not possible with empty password.
+    '''
+    if twelth_test(driver):
+        name_field = driver.find_element(By.XPATH, "//input[@placeholder='Name']")
+        username_field = driver.find_element(By.XPATH, "//input[@placeholder='Enter your username']")
+        email_field = driver.find_element(By.XPATH, "//input[@placeholder='Email']")
+        password_field = driver.find_element(By.XPATH, "//input[@placeholder='Enter your password']")
+        name_field.send_keys("stqa_tester")
+        username_field.send_keys("stqa_tester")
+        email_field.send_keys("atharvabhide91@gmail.com")
+        password_field.send_keys("")
+
+        sign_up_button = driver.find_element(By.XPATH, "//button[text()='Sign Up' and contains(@class, '_button_19ks3_90')]")
+        actions = ActionChains(driver)
+        actions.move_to_element(sign_up_button)
+        actions.perform()
+        sign_up_button.click()
+        expected_url = "https://dev-finder-5b30d7.netlify.app/"
+        try:
+            WebDriverWait(driver, 5).until(EC.url_to_be(expected_url))
+            if driver.current_url == expected_url:
+                print(Fore.RED + "Test failed" + Style.RESET_ALL)
+                return False
+            else:
+                print(Fore.GREEN + "Test passed" + Style.RESET_ALL)
+                return True
+        except Exception as e:
+            print(Fore.GREEN + f"Test passed" + Style.RESET_ALL)
+            return True
+
+def eighteenth_test(driver):
+        '''
+        Verify that Sign Up is possible with correct details.
+        '''
+        if twelth_test(driver):
+            name_field = driver.find_element(By.XPATH, "//input[@placeholder='Name']")
+            username_field = driver.find_element(By.XPATH, "//input[@placeholder='Enter your username']")
+            email_field = driver.find_element(By.XPATH, "//input[@placeholder='Email']")
+            password_field = driver.find_element(By.XPATH, "//input[@placeholder='Enter your password']")
+            name_field.send_keys("stqa_tester")
+            username_field.send_keys("stqa_tester")
+            email_field.send_keys("atharvabhide91@gmail.com")
+            password_field.send_keys("password123")
+
+            sign_up_button = driver.find_element(By.XPATH, "//button[text()='Sign Up' and contains(@class, '_button_19ks3_90')]")
+            actions = ActionChains(driver)
+            actions.move_to_element(sign_up_button)
+            actions.perform()
+            sign_up_button.click()
+            print(Fore.GREEN + f"Test passed" + Style.RESET_ALL)
+
+def nineteenth_test(driver):
+    '''
+    Verify that edit profile button can be clicked
+    '''
+    if fourth_test(driver):
+        driver.get("https://dev-finder-5b30d7.netlify.app/account")
+        edit_button = driver.find_element(By.XPATH, "//button[text()='Edit Profile']")
+        expected_url = "https://dev-finder-5b30d7.netlify.app/account/edit/"
+        edit_button.click()
+        try:
+            WebDriverWait(driver, 5)
+            if expected_url in driver.current_url:
+                print(Fore.GREEN + "Test passed" + Style.RESET_ALL)
+                return True
+            else:
+                print(Fore.RED + "Test failed" + Style.RESET_ALL)
+                return False
+        except Exception as e:
+            print(Fore.GREEN + f"Test passed" + Style.RESET_ALL)
+            return True
+
+def twenteeth_test(driver):
+    '''
+    Verify that name can be edited
+    '''
+    if nineteenth_test(driver):
+        name_input = driver.find_element(By.XPATH, "//input[@placeholder='Name']")
+        image_input = driver.find_element(By.XPATH, "//input[@type='file']")
+        image_input.send_keys(r"C:\Users\athar\OneDrive\Desktop\coding\projects\DevFinder Selenium Testing\AtharvaBhide_image.jpeg")
+        name_input.send_keys("Updated Atharva")
+        form = driver.find_element(By.XPATH, "//form[@class='_form_1i17n_7']")
+        form.submit()
+        expected_url = "https://dev-finder-5b30d7.netlify.app/account/"
+        try:
+            if expected_url in driver.current_url:
+                print(Fore.GREEN + "Test passed" + Style.RESET_ALL)
+                return True
+            else:
+                print(Fore.RED + "Test failed" + Style.RESET_ALL)
+                return False
+        except Exception as e:
+            print(e)
+            print(Fore.GREEN + f"Test passed" + Style.RESET_ALL)
+            return True
+
 if __name__ == "__main__":
     driver = webdriver.Chrome()
     first_test(driver)
@@ -266,4 +514,13 @@ if __name__ == "__main__":
     ninth_test(driver)
     tenth_test(driver)
     eleventh_test(driver)
+    twelth_test(driver)
+    thirteenth_test(driver)
+    fourteenth_test(driver)
+    fifteenth_test(driver)
+    sixteenth_test(driver)
+    seventeenth_test(driver)
+    eighteenth_test(driver)
+    nineteenth_test(driver)
+    twenteeth_test(driver)
     driver.quit()
