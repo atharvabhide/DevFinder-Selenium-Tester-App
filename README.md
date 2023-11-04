@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a testing project for the DevFinder project. It uses Selenium to test the functionality of the DevFinder website.
+This is a Streamlit Application to test the DevFinder project. It uses Selenium to test the functionality of the DevFinder website.
 
 ## Installation
 
