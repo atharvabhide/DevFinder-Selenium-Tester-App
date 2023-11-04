@@ -8,7 +8,7 @@ This is a Streamlit Application to test the DevFinder project. It uses Selenium 
 
 Clone the project:
 ```
-git clone https://github.com/Bit-Lords-1000101/DevFinder-Selenium-Testing.git
+git clone https://github.com/atharvabhide/DevFinder-Selenium-Testing.git
 ```
 
 Install the dependencies:
